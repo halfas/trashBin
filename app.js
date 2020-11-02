@@ -12,7 +12,7 @@ app.get('/login/', (req, res) => {
 });
 app.get('/promise/', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
-  res.send('function task(x){ return new Promise((resolve,rejected) =>{x > 18 ? resolve("yes"): rejected("no")})}')
+  res.send('function task(x){ return new Promise((resolve,rejected) =>{x < 18 ? resolve("yes"): rejected("no")})}')
 });
 app.get('/fetch/', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
