@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   res.send('Hello Express app!')
 });
 app.get('/login/', (req, res) => {
