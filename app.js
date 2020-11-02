@@ -6,6 +6,16 @@ app.get('/', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   res.send('Hello Express app!')
 });
+app.get('/result4/', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+  let data = {
+    message: rip123123, 
+    ['x-result']: req.get('x-test'),
+    ['x-body']: req.body,   
+  }
+  res.send(JSON.stringify(data))
+});
 app.get('/login/', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   res.send('rip123123')
