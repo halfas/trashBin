@@ -4,9 +4,9 @@ const app = express();
 const options = {
   inflate: true,
   limit: 1000,
-  type: 'text/plain'
+  type: ['text/plain', 'text/html']
 };
-app.use(bodyParser.raw(options));
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
@@ -15,12 +15,15 @@ app.get('/', (req, res) => {
 
 app.post('/result4/', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+  res.setHeader('Access-Control-Allow-Headers', `origin, content-type, accept,  x-text`);
+  res.setHeader('Content-Type', 'application/json');
   let data = {
     message: 'rip123123', 
     ['x-result']: req.get('x-test'),
     ['x-body']: req.body,   
   }
+  console.log(req.body)
+  
   res.send(JSON.stringify(data))
 });
 app.get('/login/', (req, res) => {
