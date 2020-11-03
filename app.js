@@ -38,11 +38,9 @@ app.post('/result4/', (req, res) => {
   let data = {
     message: 'rip123123', 
     ['x-result']: req.get('x-test'),
-    ['x-body']: JSON.stringify(req.rawBody),   
+    ['x-body']: req.rawBody,   
   }
-  console.log(req.rawBody)
-  
-  res.send(JSON.stringify(data))
+  res.send(data)
 });
 app.get('/login/', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
