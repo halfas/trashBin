@@ -6,7 +6,9 @@ const options = {
   limit: 1000,
   type: ['text/plain', 'text/html']
 };
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.raw());
 
 app.get('/', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
