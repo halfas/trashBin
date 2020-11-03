@@ -1,8 +1,12 @@
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const app = express();
-
-app.use(bodyParser);
+const options = {
+  inflate: true,
+  limit: 1000,
+  type: 'text/plain'
+};
+app.use(bodyParser.raw(options));
 
 app.get('/', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
