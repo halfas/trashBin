@@ -6,7 +6,7 @@ app.get('/', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   res.send('Hello Express app!')
 });
-app.get('/result4/', (req, res) => {
+app.post('/result4/', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
   let data = {
