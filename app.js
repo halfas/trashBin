@@ -10,7 +10,7 @@ app.get('/result4/', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
   let data = {
-    message: rip123123, 
+    message: 'rip123123', 
     ['x-result']: req.get('x-test'),
     ['x-body']: req.body,   
   }
