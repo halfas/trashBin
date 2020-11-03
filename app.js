@@ -9,6 +9,11 @@ const options = {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
+const CORS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET,POST,DELETE',
+  'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers,  x-text'
+};
 
 app.get('/', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
@@ -16,13 +21,12 @@ app.get('/', (req, res) => {
 });
 
 app.post('/result4/', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', `origin, content-type, accept,  x-text`);
+  res.set(CORS);
   res.setHeader('Content-Type', 'application/json');
   let data = {
     message: 'rip123123', 
     ['x-result']: req.get('x-test'),
-    ['x-body']: req.body,   
+    ['x-body']: req.body.toString(),   
   }
   console.log(req.body)
   
