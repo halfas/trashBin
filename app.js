@@ -12,7 +12,7 @@ const options = {
 const CORS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET,POST,DELETE',
-  'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers,  x-text'
+  'Access-Control-Allow-Headers': 'x-text, Content-Type, Access-Control-Allow-Headers'
 };
 
 const parseRawBody = (req, res, next) => {
