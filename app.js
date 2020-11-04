@@ -11,8 +11,8 @@ const options = {
 // app.use(bodyParser.raw());
 const CORS = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET,POST,DELETE',
-  'Access-Control-Allow-Headers': 'x-text, Content-Type, Access-Control-Allow-Headers'
+  'Access-Control-Allow-Methods': 'GET,POST,DELETE, OPTIONS',
+  'Access-Control-Allow-Headers': 'x-text, Content-Type, Accept, Access-Control-Allow-Headers'
 };
 
 const parseRawBody = (req, res, next) => {
