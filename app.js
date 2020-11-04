@@ -42,6 +42,26 @@ app.post('/result4/', (req, res) => {
   }
   res.send(data)
 });
+app.get('/result4/', (req, res) => {
+  res.set(CORS);
+  res.setHeader('Content-Type', 'application/json');
+  let data = {
+    message: 'rip123123', 
+    ['x-result']: req.get('x-test'),
+    ['x-body']: req.rawBody,   
+  }
+  res.send(data)
+});
+app.delete('/result4/', (req, res) => {
+  res.set(CORS);
+  res.setHeader('Content-Type', 'application/json');
+  let data = {
+    message: 'rip123123', 
+    ['x-result']: req.get('x-test'),
+    ['x-body']: req.rawBody,   
+  }
+  res.send(data)
+});
 app.get('/login/', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   res.send('rip123123')
