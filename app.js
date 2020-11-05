@@ -36,7 +36,7 @@ app.post('/result4/', (req, res) => {
   res.set(CORS);
   res.setHeader('Content-Type', 'application/json');
   let data = {
-    message: 'rip123123', 
+    message: 'itmo287663', 
     ['x-result']: req.get('x-test'),
     ['x-body']: req.rawBody,   
   }
@@ -46,7 +46,7 @@ app.get('/result4/', (req, res) => {
   res.set(CORS);
   res.setHeader('Content-Type', 'application/json');
   let data = {
-    message: 'rip123123', 
+    message: 'itmo287663', 
     ['x-result']: req.get('x-test'),
     ['x-body']: req.rawBody,   
   }
@@ -56,7 +56,7 @@ app.delete('/result4/', (req, res) => {
   res.set(CORS);
   res.setHeader('Content-Type', 'application/json');
   let data = {
-    message: 'rip123123', 
+    message: 'itmo287663', 
     ['x-result']: req.get('x-test'),
     ['x-body']: req.rawBody,   
   }
@@ -66,7 +66,7 @@ app.options('/result4/', (req, res) => {
   res.set(CORS);
   res.setHeader('Content-Type', 'application/json');
   let data = {
-    message: 'rip123123', 
+    message: 'itmo287663', 
     ['x-result']: req.get('x-test'),
     ['x-body']: req.rawBody,   
   }
