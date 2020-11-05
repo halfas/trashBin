@@ -74,7 +74,7 @@ app.options('/result4/', (req, res) => {
 });
 app.get('/login/', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
-  res.send('rip123123')
+  res.send('itmo287663')
 });
 app.get('/promise/', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
