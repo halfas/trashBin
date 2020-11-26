@@ -1,41 +1,62 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
-const options = {
-  inflate: true,
-  limit: 1000,
-  type: 'text/plain'
+const appSrc = (express, bodyParser, createReadStream, crypto, http)=>{
+  const app = express();
+  app.use(bodyParser.text());
+  const CORS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+  'Access-Control-Allow-Headers':'CORS,my,Content-Type,Accept,Access-Control-Allow-Headers'
+  };
+  app.get('/login/', (req, res) => {
+    res.set(CORS);
+    res.send('rip123123')
+  });
+  app.get('/code/', (req, res) => {
+    res.set(CORS);
+    var readStream = createReadStream(__dirname+`\\app.js`);
+    // var readStream = createReadStream(import.meta.url.substring(7));
+    readStream.on('data', function (chunk) { 
+    res.send(chunk.toString())
+    }); 
+  });
+  app.get('/sha1/', (req, res) => {
+    res.set(CORS);
+    const forCode = req.query.input;
+    const shasum = crypto.createHash('sha1')
+    shasum.update(forCode)
+    res.send(shasum.digest('hex'))
+  });
+  app.get('/req/', (req, res) => {
+    res.set(CORS);
+    const adress = req.query.addr;
+    console.log(adress)
+    http.get(adress,(resp)=>{
+      resp.on('data', function (chunk) {
+        res.send(chunk+'');
+      });
+      
+    })
+  });
+  app.post('/req/', (req, res) => {
+    res.set(CORS);
+    const adress = req.body;
+    console.log(adress)
+    http.get(adress,(resp)=>{
+      resp.on('data', function (chunk) {
+        res.send(chunk+'');
+      });
+      
+    })
+  });
+  return app;
+}
+// const getBody = (adress)=>{
+//   http.get(adress,(resp)=>{
+//     resp.on('data', function (chunk) {
+//       return chunk
+//     });
+//   })
+// }
+module.exports = {
+  appSrc
 };
-app.use(bodyParser.raw(options));
-
-app.get('/', (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
-  res.send('Hello Express app!')
-});
-
-app.post('/result4/', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
-  let data = {
-    message: 'rip123123', 
-    ['x-result']: req.get('x-test'),
-    ['x-body']: req.body,   
-  }
-  res.send(JSON.stringify(data))
-});
-app.get('/login/', (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
-  res.send('rip123123')
-});
-app.get('/promise/', (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
-  res.send('function task(x){ return new Promise((resolve,rejected) =>{x < 18 ? resolve("yes"): rejected("no")})}')
-});
-app.get('/fetch/', (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
-  res.sendFile(__dirname + '/index.html')
-});
-var port = process.env.PORT || 5000;
-app.listen(port, function() {
-  console.log("Listening on " + port);
-});
+// export default appSrc;
