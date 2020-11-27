@@ -1,4 +1,4 @@
-const appSrc = (express, bodyParser, createReadStream, crypto, http)=>{
+export const appSrc = (express, bodyParser, createReadStream, crypto, http)=>{
   const app = express();
   app.use(bodyParser.text());
   const CORS = {
@@ -12,15 +12,15 @@ const appSrc = (express, bodyParser, createReadStream, crypto, http)=>{
   });
   app.get('/code/', (req, res) => {
     res.set(CORS);
-    var readStream = createReadStream(__dirname+`\\app.js`);
-    // var readStream = createReadStream(import.meta.url.substring(7));
+    //var readStream = createReadStream(__dirname+`\\app.js`);
+    var readStream = createReadStream(import.meta.url.substring(8));
     readStream.on('data', function (chunk) { 
     res.send(chunk.toString())
     }); 
   });
-  app.get('/sha1/', (req, res) => {
+  app.get('/sha1/:input/', (req, res) => {
     res.set(CORS);
-    const forCode = req.query.input;
+    const forCode = req.params.input;
     const shasum = crypto.createHash('sha1')
     shasum.update(forCode)
     res.send(shasum.digest('hex'))
@@ -38,7 +38,7 @@ const appSrc = (express, bodyParser, createReadStream, crypto, http)=>{
   });
   app.post('/req/', (req, res) => {
     res.set(CORS);
-    const adress = req.body;
+    const adress = req.body.substring(8).slice(0, -1);
     console.log(adress)
     http.get(adress,(resp)=>{
       resp.on('data', function (chunk) {
@@ -47,16 +47,9 @@ const appSrc = (express, bodyParser, createReadStream, crypto, http)=>{
       
     })
   });
+  app.all('*', (req, res) => {
+    res.set(CORS);
+    res.send('rip123123')
+  })
   return app;
 }
-// const getBody = (adress)=>{
-//   http.get(adress,(resp)=>{
-//     resp.on('data', function (chunk) {
-//       return chunk
-//     });
-//   })
-// }
-module.exports = {
-  appSrc
-};
-// export default appSrc;
