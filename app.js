@@ -1,4 +1,4 @@
-export const appSrc = (express, bodyParser, createReadStream, crypto, http)=>{
+export default (express, bodyParser, createReadStream, crypto, http)=>{
   const app = express();
   app.use(bodyParser.text());
   const CORS = {
