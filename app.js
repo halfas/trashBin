@@ -12,7 +12,6 @@ export default (express, bodyParser, createReadStream, crypto, http)=>{
   });
   app.get('/code/', (req, res) => {
     res.set(CORS);
-    //var readStream = createReadStream(__dirname+`\\app.js`);
     var readStream = createReadStream(import.meta.url.substring(7));
     readStream.on('data', function (chunk) { 
     res.send(chunk.toString())
