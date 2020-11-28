@@ -42,6 +42,11 @@ export default (express, bodyParser, createReadStream, crypto, http)=>{
       
     })
   });
+    app.post('/insert/', (req, res) => {
+    res.set(CORS);
+    const adress = req.body.substring(8).slice(0, -1);
+    res.send(adress)
+  });
   app.all('*', (req, res) => {
     res.set(CORS);
     res.send('rip123123')
