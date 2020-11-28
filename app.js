@@ -25,7 +25,6 @@ export default (express, bodyParser, createReadStream, crypto, http)=>{
   app.get('/req/', (req, res) => {
     res.set(CORS);
     const adress = req.query.addr;
-    console.log(adress)
     http.get(adress,(resp)=>{
       resp.on('data', function (chunk) {
         res.send(chunk+'');
@@ -36,7 +35,6 @@ export default (express, bodyParser, createReadStream, crypto, http)=>{
   app.post('/req/', (req, res) => {
     res.set(CORS);
     const adress = req.body.substring(8).slice(0, -1);
-    console.log(adress)
     http.get(adress,(resp)=>{
       resp.on('data', function (chunk) {
         res.send(chunk+'');
