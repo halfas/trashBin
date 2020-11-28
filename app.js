@@ -12,10 +12,7 @@ export default (express, bodyParser, createReadStream, crypto, http)=>{
   });
   app.get('/code/', (req, res) => {
     res.set(CORS);
-    var readStream = createReadStream(import.meta.url.substring(7));
-    readStream.on('data', function (chunk) { 
-    res.send(chunk.toString())
-    }); 
+    createReadStream(import.meta.url.substring(7)).pipe(res);
   });
   app.get('/sha1/:input/', (req, res) => {
     res.set(CORS);
