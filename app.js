@@ -1,6 +1,8 @@
 export default (express, bodyParser, createReadStream, crypto, http, mongoose)=>{
   const app = express();
   app.use(bodyParser.text());
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
   const CORS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
@@ -44,7 +46,7 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose)=>
   });
     app.post('/insert/', (req, res) => {
       res.set(CORS);
-      const url = req.body.url;
+      const url = req.body.URL;
       const login = req.body.login;
       const password = req.body.password;
 
