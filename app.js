@@ -44,7 +44,7 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose)=>
   });
     app.post('/insert/', (req, res) => {
       res.set(CORS);
-      const url = req.body.URL;
+      const url = req.body.url;
       const login = req.body.login;
       const password = req.body.password;
 
