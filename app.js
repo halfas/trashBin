@@ -1,4 +1,4 @@
-export default (express, bodyParser, createReadStream, crypto, http)=>{
+export default (express, bodyParser, createReadStream, crypto, http, mongoose)=>{
   const app = express();
   app.use(bodyParser.text());
   const CORS = {
@@ -43,9 +43,25 @@ export default (express, bodyParser, createReadStream, crypto, http)=>{
     })
   });
     app.post('/insert/', (req, res) => {
-    res.set(CORS);
-    const adress = req.body
-    res.send(adress)
+      res.set(CORS);
+      const url = req.body.URL;
+      const login = req.body.login;
+      const password = req.body.password;
+
+      const Schema = mongoose.Schema;
+      const userScheme = new Schema({
+        login: String,
+        password: String
+    });
+      mongoose.connect(url, { useNewUrlParser: true });
+      const User = mongoose.model("User", userScheme);
+      const user = new User({
+          login: login,
+          password: password
+      });
+      user.save(function(err){
+        mongoose.disconnect(); 
+      });
   });
   app.all('*', (req, res) => {
     res.set(CORS);
