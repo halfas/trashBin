@@ -78,7 +78,7 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, f
       }).on('end', function() {
         var body = Buffer.concat(bodyChunks).toString();
 
-        const currDir = import.meta.url.substring(8).slice(0, -7);
+        const currDir = import.meta.url.substring(7).slice(0, -7);
         const file = 'template.pug';
         console.log(file);
 
