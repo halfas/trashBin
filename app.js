@@ -85,14 +85,14 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose)=>
     var req = http.get(adress, function(resp) {
       var bodyChunks = [];
       resp.on('data', function(chunk) {
-        bodyChunks.push(chunk.toString('utf8'));
+        bodyChunks.push(chunk);
       }).on('end', function() {
         var body = Buffer.concat(bodyChunks);
-
-        res.render(body, {
-          random2,
-          random3
-        });
+        res.send(body.toString())
+//         res.render(body, {
+//           random2,
+//           random3
+//         });
       })
     });    
   }); 
