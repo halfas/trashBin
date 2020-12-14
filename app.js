@@ -79,7 +79,7 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose)=>
     const random2 = req.body.random2;
     const random3 = req.body.random3;
       //res.send(adress)
-var req = http.get(options, function(resp) {
+var req = http.get(adress, function(resp) {
 
   // Buffer the body entirely for processing as a whole.
   var bodyChunks = [];
