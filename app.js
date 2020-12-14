@@ -84,7 +84,11 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, f
 
     const response = await fetch(adress);
     const body = await response.text();
-    res.send(body)
+    res.render(body, {
+            random2,
+            random3
+         });
+    //res.send(body)
 //     var req = http.get(adress, function(resp) {
 //       var bodyChunks = [];
 //       resp.on('data', function(chunk) {
