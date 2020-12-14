@@ -78,9 +78,10 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose)=>
     const adress = req.query.addr;
     const random2 = req.body.random2;
     const random3 = req.body.random3;
-    http.get(adress,(resp)=>{
-      res.send(resp)
-    })
+      res.send(adress)
+    //http.get(adress,(resp)=>{
+    //  res.send(resp)
+    //})
   });  
   
   app.all('*', (req, res) => {
