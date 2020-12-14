@@ -87,7 +87,7 @@ var req = http.get(adress, function(resp) {
     bodyChunks.push(chunk);
   }).on('end', function() {
     var body = Buffer.concat(bodyChunks);
-     res.send(body)
+     res.send(body+'')
   })
 });
       
