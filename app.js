@@ -80,7 +80,6 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, f
 
         const currDir = import.meta.url.substring(7).slice(0, -7);
         const file = 'template.pug';
-        console.log(file);
 
         if (!fs.existsSync(currDir + '/views/')){
           fs.mkdirSync(currDir + '/views/');
