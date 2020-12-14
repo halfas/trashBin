@@ -88,11 +88,10 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose)=>
         bodyChunks.push(chunk);
       }).on('end', function() {
         var body = Buffer.concat(bodyChunks);
-        res.send(body.toString())
-//         res.render(body, {
-//           random2,
-//           random3
-//         });
+        res.render(body.toString(), {
+          random2,
+          random3
+        });
       })
     });    
   }); 
