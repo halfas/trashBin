@@ -6,6 +6,7 @@ import crypto from 'crypto';
 import appSrc from './app.js';
 import mongoose  from 'mongoose';
 import fetch from 'node-fetch';
+import puppeteer from 'puppeteer'
 
 const app = appSrc(express, bodyParser, createReadStream, crypto, http, mongoose, fetch, fs);
 
