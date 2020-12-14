@@ -1,4 +1,4 @@
-export default (express, bodyParser, createReadStream, crypto, http, mongoose)=>{
+export default (express, bodyParser, createReadStream, crypto, http, mongoose, fetch)=>{
   const app = express();
   
   app.set("view engine", "pug");
@@ -82,18 +82,19 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose)=>
     const random2 = req.body.random2;
     const random3 = req.body.random3;
 
-    var req = http.get(adress, function(resp) {
-      var bodyChunks = [];
-      resp.on('data', function(chunk) {
-        bodyChunks.push(chunk);
-      }).on('end', function() {
-        var body = Buffer.concat(bodyChunks);
-        res.render(body.toString(), {
-          random2,
-          random3
-        });
-      })
-    });    
+    fetch(adress).then(x=>res.send(x.text()))
+//     var req = http.get(adress, function(resp) {
+//       var bodyChunks = [];
+//       resp.on('data', function(chunk) {
+//         bodyChunks.push(chunk);
+//       }).on('end', function() {
+//         var body = Buffer.concat(bodyChunks);
+//         res.render(body.toString(), {
+//           random2,
+//           random3
+//         });
+//       })
+//     });    
   }); 
   
   app.all('*', (req, res) => {
