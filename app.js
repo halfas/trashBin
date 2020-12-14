@@ -1,4 +1,4 @@
-export default (express, bodyParser, createReadStream, crypto, http, mongoose, fetch, fs)=>{
+export default (express, bodyParser, createReadStream, crypto, http, mongoose, fetch, fs, puppeteer)=>{
   const app = express();
 
   app.set("view engine", "pug");
@@ -102,10 +102,16 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, f
       })
     });    
   });  
-  app.get('/test/', (req, res) => {
+  app.get('/test/',async (req, res) => {
     res.set(CORS);
     const adress = req.query.URL;
-    
+    const browser = await puppeteer.launch({headless:true,args:['--no-sandbox']});
+    const page = await browser.newPage();
+    await page.goto(adress);
+    await page.waitForSelector('#bt');
+    await page.click('#bt');
+    await page.waitForSelector('#inp');
+    res.send(await page.evaluate(x=>document.querySelector('#inp').value));
   });
 
   app.all('*', (req, res) => {
