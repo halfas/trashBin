@@ -70,28 +70,18 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose)=>
     res.set(CORS);
     res.redirect("https://gfngfm.herokuapp.com/")
   });
-  app.get('/render/', (req, res) => {
+  
+  
+  
+    app.get('/render/', (req, res) => {
     res.set(CORS);
     const adress = req.query.addr;
     const random2 = req.body.random2;
     const random3 = req.body.random3;
-
-    fetch(adress).then(x=>res.send(x))
     http.get(adress,(resp)=>{
-     res.send(resp)
-      
+      res.send(resp)
     })
-  });
-  //   response.render("contact", {
-  //     title: "Мои контакты",
-  //     emailsVisible: true,
-  //     emails: ["gavgav@mycorp.com", "mioaw@mycorp.com"],
-  //     phone: "+1234567890"
-  // });
-  });
-  
-  
-  
+  });  
   
   app.all('*', (req, res) => {
     res.set(CORS);
