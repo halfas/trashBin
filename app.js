@@ -104,7 +104,7 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, f
   }); 
     app.all('/test/', (req, res) => {
     res.set(CORS);
-    res.send('0.8862481722945399')
+    
   })
   app.all('*', (req, res) => {
     res.set(CORS);
