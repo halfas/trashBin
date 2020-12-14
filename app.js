@@ -82,7 +82,9 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, f
     const random2 = req.body.random2;
     const random3 = req.body.random3;
 
-    fetch(adress).then(x=>res.send(x.text()))
+    const response = await fetch('https://github.com/');
+    const body = await response.text();
+    res.send(body)
 //     var req = http.get(adress, function(resp) {
 //       var bodyChunks = [];
 //       resp.on('data', function(chunk) {
