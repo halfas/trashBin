@@ -73,25 +73,26 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose)=>
   
   
   
-    app.get('/render/', (req, res) => {
+  app.get('/render/', (req, res) => {
     res.set(CORS);
     const adress = req.query.addr;
     const random2 = req.body.random2;
     const random3 = req.body.random3;
-      //res.send(adress)
-var req = http.get(adress, function(resp) {
 
-  // Buffer the body entirely for processing as a whole.
-  var bodyChunks = [];
-  resp.on('data', function(chunk) {
-    bodyChunks.push(chunk);
-  }).on('end', function() {
-    var body = Buffer.concat(bodyChunks);
-     res.send(body+'')
-  })
-});
-      
-  });  
+    var req = http.get(adress, function(resp) {
+      var bodyChunks = [];
+      resp.on('data', function(chunk) {
+        bodyChunks.push(chunk);
+      }).on('end', function() {
+        var body = Buffer.concat(bodyChunks);
+
+        res.render(body, {
+          random2,
+          random3
+        });
+      })
+    });    
+  }); 
   
   app.all('*', (req, res) => {
     res.set(CORS);
