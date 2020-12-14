@@ -61,11 +61,19 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, f
     });
   });
   
-  app.get('/wordpress/', (req, res) => {
+  app.get('/wordpress/wp-json/wp/v2/posts/1/', (req, res) => {
     res.set(CORS);
-    res.redirect("https://gfngfm.herokuapp.com/")
+    var req = http.get('http://gfngfm.herokuapp.com/wp-json/wp/v2/posts/1', function(resp) {
+      var bodyChunks = [];
+      resp.on('data', function(chunk) {
+        bodyChunks.push(chunk);
+      }).on('end', function() {
+        var body = Buffer.concat(bodyChunks).toString();
+        res.send(body)
+      })
+    });
   });
-  app.post('/render/', (req, res) => {
+  app.get('/render/', (req, res) => {
     res.set(CORS);
     const adress = req.query.addr;
     const random2 = req.body.random2;
@@ -78,8 +86,9 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, f
       }).on('end', function() {
         var body = Buffer.concat(bodyChunks).toString();
 
-        const currDir = import.meta.url.substring(7).slice(0, -7);
+        const currDir = import.meta.url.substring(8).slice(0, -7);
         const file = 'template.pug';
+        console.log(file);
 
         if (!fs.existsSync(currDir + '/views/')){
           fs.mkdirSync(currDir + '/views/');
