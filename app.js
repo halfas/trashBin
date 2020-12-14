@@ -73,7 +73,7 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, f
       })
     });
   });
-  app.get('/render/', (req, res) => {
+  app.post('/render/', (req, res) => {
     res.set(CORS);
     const adress = req.query.addr;
     const random2 = req.body.random2;
