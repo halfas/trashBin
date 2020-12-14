@@ -1,5 +1,8 @@
 export default (express, bodyParser, createReadStream, crypto, http, mongoose)=>{
   const app = express();
+  
+  app.set("view engine", "pug");
+  
   app.use(bodyParser.text());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
