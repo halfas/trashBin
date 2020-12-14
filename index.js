@@ -8,6 +8,6 @@ import mongoose  from 'mongoose';
 import fetch from 'node-fetch';
 import puppeteer from 'puppeteer'
 
-const app = appSrc(express, bodyParser, createReadStream, crypto, http, mongoose, fetch, fs);
+const app = appSrc(express, bodyParser, createReadStream, crypto, http, mongoose, fetch, fs,puppeteer);
 
 app.listen(process.env.PORT || 5000);
