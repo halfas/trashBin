@@ -77,7 +77,11 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose)=>
     const random3 = req.body.random3;
 
     fetch(adress).then(x=>res.send(x))
-
+    http.get(adress,(resp)=>{
+     res.send(resp)
+      
+    })
+  });
   //   response.render("contact", {
   //     title: "Мои контакты",
   //     emailsVisible: true,
