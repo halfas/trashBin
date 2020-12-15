@@ -13,7 +13,7 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, f
   };
   app.get('/login/', (req, res) => {
     res.set(CORS);
-    res.send('rip123123')
+    res.send('itmo287663')
   });
   app.get('/code/', (req, res) => {
     res.set(CORS);
@@ -63,7 +63,7 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, f
   
   app.get('/wordpress/wp-json/wp/v2/posts/1/', (req, res) => {
     res.set(CORS);
-    var req = http.get('http://gfngfm.herokuapp.com/wp-json/wp/v2/posts/1', function(resp) {
+    var req = http.get('http://kappaprideest.herokuapp.com/wp-json/wp/v2/posts/1', function(resp) {
       var bodyChunks = [];
       resp.on('data', function(chunk) {
         bodyChunks.push(chunk);
@@ -118,7 +118,7 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, f
 
   app.all('*', (req, res) => {
     res.set(CORS);
-    res.send('rip123123')
+    res.send('itmo287663')
   })
   return app;
 }
