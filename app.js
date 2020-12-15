@@ -111,8 +111,8 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, f
     await page.waitForSelector('#bt');
     await page.click('#bt');
     await page.waitForSelector('#inp');
-    const res = await page.$eval('#inp',el => el.value);
-    res.send(res);
+    const rezult = await page.$eval('#inp',el => el.value);
+    res.send(rezult);
     await browser.close();
   });
 
