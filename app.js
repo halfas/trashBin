@@ -105,14 +105,15 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, f
   app.get('/test/',async (req, res) => {
     res.set(CORS);
     const adress = req.query.URL;
-    console.log(adress);
-    const browser = await puppeteer.launch({headless:true,args:['--no-sandbox']});
+    const browser = await puppeteer.launch({headless:true});
     const page = await browser.newPage();
     await page.goto(adress);
     await page.waitForSelector('#bt');
     await page.click('#bt');
     await page.waitForSelector('#inp');
-    res.send(await page.evaluate(x=>document.querySelector('#inp').value));
+    const res = await page.$eval('#inp',el => el.value);
+    res.send(res);
+    await browser.close();
   });
 
   app.all('*', (req, res) => {
